@@ -61,7 +61,12 @@ class CameraDemo extends HookWidget {
         child: errorMessage.value != null
             ? Text(errorMessage.value!)
             : isCameraInitialized.value
-                ? const Text('摄像头已初始化，正在获取图像流')
+                ? Stack(
+                    children: [
+                      CameraPreview(cameraController.value!),
+                      const Center(child: Text('摄像头已初始化，正在获取图像流')),
+                    ],
+                  )
                 : const CircularProgressIndicator(),
       ),
     );
